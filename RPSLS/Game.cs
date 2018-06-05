@@ -8,17 +8,14 @@ namespace RPSLS
 {
     class Game
     {
-        //member variables
         public Player player1;
         public Player player2;
 
-
-        //constructor
         public Game()
         {
+
         }
 
-        //member methods
         public string GetPlayerName()
         {
             string playerName = string.Empty;
@@ -33,7 +30,7 @@ namespace RPSLS
                 }
                 else if(player1 != null && player1.name.ToLower().CompareTo(input.ToLower()) == 0)
                 {
-                    Console.WriteLine("'{0}' is already a player name. Please choose a different name.", player1.name);
+                    Console.WriteLine($"'{player1.name}' is already a player name. Please choose a different name.");
                 }
                 else
                 {
@@ -71,31 +68,13 @@ namespace RPSLS
             return newPlayer;
         }
 
-        public string DetermineWinner()
-        {
-            string winningPlayer = string.Empty;
-            if(player1.score >= 2)
-            {
-                winningPlayer = player1.name;
-            }
-            else if(player2.score >= 2)
-            {
-                winningPlayer = player2.name;
-            }
-            else
-            {
-                Console.WriteLine("There is an error. Please restart game.");
-            }
-            return winningPlayer;
-        }
+
 
         public void DisplayWinner(string winner)
         {
-            Console.WriteLine("{0} is the winner of this game!", winner);
+            Console.WriteLine($"{winner} is the winner of this game!");
             Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
-            
-            
         }
 
         public void DoRound()
@@ -105,8 +84,7 @@ namespace RPSLS
 
             if(player1Gesture.CompareTo(player2Gesture) == 0)
             {
-                Console.WriteLine("There is no winner this round, both players tied.");
-               
+                Console.WriteLine("This round is a tie, both players chose the same gesture.");  
             }
             else
             {
@@ -115,96 +93,114 @@ namespace RPSLS
                     case "rock":
                         if (player2Gesture == "scissors" || player2Gesture == "lizard")
                         {
-                            Console.WriteLine("{0} wins this round.", player1.name);
+                            Console.WriteLine($"{player1.name} wins this round.");
                             player1.score += 1;
                         }
                         else
                         {
-                            Console.WriteLine("{0} wins this round.", player2.name);
+                            Console.WriteLine($"{player2.name} wins this round.");
                             player2.score += 1;
                         }
                         break;
                     case "paper":
                         if (player2Gesture == "rock" || player2Gesture == "spock")
                         {
-                            Console.WriteLine("{0} wins this round.", player1.name);
+                            Console.WriteLine($"{player1.name} wins this round.");
                             player1.score += 1;
                         }
                         else
                         {
-                            Console.WriteLine("{0} wins this round.", player2.name);
+                            Console.WriteLine($"{player2.name} wins this round.");
                             player2.score += 1;
                         }
                         break;
                     case "scissors":
                         if(player2Gesture == "paper" || player2Gesture == "lizard")
                         {
-                            Console.WriteLine("{0} wins this round.", player1.name);
+                            Console.WriteLine($"{player1.name} wins this round.");
                             player1.score += 1;
                         }
                         else
                         {
-                            Console.WriteLine("{0} wins this round.", player2.name);
+                            Console.WriteLine($"{player2.name} wins this round.");
                             player2.score += 1;
                         }
                         break;
                     case "lizard":
                         if(player2Gesture == "paper" || player2Gesture == "spock")
                         {
-                            Console.WriteLine("{0} wins this round.", player1.name);
+                            Console.WriteLine($"{player1.name} wins this round.");
                             player1.score += 1;
                         }
                         else
                         {
-                            Console.WriteLine("{0} wins this round.", player2.name);
+                            Console.WriteLine($"{player2.name} wins this round.");
                             player2.score += 1;
                         }
                         break;
                     case "spock":
                         if(player2Gesture == "rock" || player2Gesture == "scissors")
                         {
-                            Console.WriteLine("{0} wins this round.", player1.name);
+                            Console.WriteLine($"{player1.name} wins this round.");
                             player1.score += 1;
                         }
                         else
                         {
-                            Console.WriteLine("{0} wins this round.", player2.name);
+                            Console.WriteLine($"{player2.name} wins this round.");
                             player2.score += 1;
                         }
                         break;
                     default:
                         break;
-
                 }
             } 
         }
 
         public void DisplayScore()
         {
-            Console.WriteLine("{0}'s score is: {1}", player1.name, player1.score);
-            Console.WriteLine("{0}'s score is: {1}", player2.name, player2.score);
+            Console.WriteLine($"{player1.name}'s score is: {player1.score}");
+            Console.WriteLine($"{player2.name}'s score is: {player2.score}");
         }
 
-        public void RunGame()
+        public string SetWinner()
         {
-            // Create Player 1
-            string playerName = GetPlayerName();
-            player1 = new Human(playerName);
+            string winningPlayer = string.Empty;
+            if (player1.score >= 2)
+            {
+                winningPlayer = player1.name;
+            }
+            else if (player2.score >= 2)
+            {
+                winningPlayer = player2.name;
+            }
+            else
+            {
+                Console.WriteLine("There is an error. Please restart game.");
+            }
+                return winningPlayer;
+        }
 
-            // Create Player 2
-            player2 = DeterminePlayer();
-
-
-            //start loop
+        public void DetermineWinningPlayer()
+        {
             while (player1.score < 2 && player2.score < 2)
             {
                 DoRound();
                 DisplayScore();
-            }
+            }         
+        }
 
-            string winner = DetermineWinner();
+
+        public void RunGame()
+        {
+            string playerName = GetPlayerName();
+            player1 = new Human(playerName);
+
+            player2 = DeterminePlayer();
+
+            DetermineWinningPlayer();
+
+            string winner = SetWinner();
             DisplayWinner(winner);
-
         }
     }
 }

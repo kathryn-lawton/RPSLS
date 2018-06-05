@@ -8,30 +8,26 @@ namespace RPSLS
 {
     class Human: Player
     {
-        //member variables
 
-        //constructor
         public Human(string playerName) :
             base(playerName)
         {
-        }
 
-        //member methods
+        }
 
         public override string MakeGestureChoice()
         {
             string input = string.Empty;
             do
             {
-                Console.WriteLine("{0}, please enter a gesture choice from the printed list:", base.name);
+                Console.WriteLine($"{base.name}, please enter a gesture choice from the printed list:");
                 foreach (string gesture in base.gestures)
                 {
                     Console.WriteLine(gesture);
                 }
 
                 input = Console.ReadLine().ToLower();
-
-
+                
             } while (IsValidGesture(input) == false);
 
             return input;
@@ -47,7 +43,7 @@ namespace RPSLS
                 }
             }
 
-            Console.WriteLine("{0} is an invalid gesture.", input);
+            Console.WriteLine($"{input} is an invalid gesture.");
             return false;
         }
     }
