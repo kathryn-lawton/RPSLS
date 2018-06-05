@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    class ComputerPlayer : Player
+    class Computer : Player
     {
         //member variables
         private const string computerName = "Computer";
        
         //constructor
-        public ComputerPlayer() :
+        public Computer() :
             base(computerName)
         {
         }
@@ -24,7 +24,7 @@ namespace RPSLS
             Random r = new Random();
             int index = r.Next(base.gestures.Count);
             string value = gestures[index];
-            Console.WriteLine(computerName + " chose " + value + ".");
+            Console.WriteLine(base.name + " chose " + value + ".");
             return value;
             
         }

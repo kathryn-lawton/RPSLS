@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    class HumanPlayer: Player
+    class Human: Player
     {
         //member variables
 
         //constructor
-        public HumanPlayer(string playerName) :
+        public Human(string playerName) :
             base(playerName)
         {
         }
@@ -23,7 +23,7 @@ namespace RPSLS
             string input = string.Empty;
             do
             {
-                Console.WriteLine("Please enter a gesture choice from the printed list:");
+                Console.WriteLine(base.name + ", please enter a gesture choice from the printed list:");
                 foreach (string gesture in base.gestures)
                 {
                     Console.WriteLine(gesture);

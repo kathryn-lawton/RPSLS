@@ -22,11 +22,26 @@ namespace RPSLS
         public string GetPlayerName()
         {
             string playerName = string.Empty;
-            Console.WriteLine("Please enter your name:");
-            playerName = Console.ReadLine();
-            return playerName;
-            //add validation
+            do
+            {
+                Console.WriteLine("Please enter your name:");
+                string input = Console.ReadLine();
 
+                if(input.ToLower().CompareTo("computer") == 0)
+                {
+                    Console.WriteLine("'Computer' is not a valid name.");
+                }
+                else if(player1 != null && player1.name.ToLower().CompareTo(input.ToLower()) == 0)
+                {
+                    Console.WriteLine("'{0}' is already a player name. Please choose a different name.", player1.name);
+                }
+                else
+                {
+                    playerName = input;
+                }
+            } while (playerName.CompareTo(string.Empty) == 0);
+            
+            return playerName;
         }  
 
         public Player DeterminePlayer()
@@ -41,11 +56,11 @@ namespace RPSLS
                 {
                     string playerName = GetPlayerName();
 
-                    newPlayer = new HumanPlayer(playerName);
+                    newPlayer = new Human(playerName);
                 }
                 else if (playerChoice == "computer")
                 {
-                    newPlayer = new ComputerPlayer();
+                    newPlayer = new Computer();
                 }
                 else
                 {
@@ -91,7 +106,7 @@ namespace RPSLS
             if(player1Gesture.CompareTo(player2Gesture) == 0)
             {
                 Console.WriteLine("There is no winner this round, both players tied.");
-                DisplayScore();
+               
             }
             else
             {
@@ -102,13 +117,12 @@ namespace RPSLS
                         {
                             Console.WriteLine(player1.name + " wins this round.");
                             player1.score += 1;
-                            DisplayScore();
+                            //.compareTo()
                         }
                         else
                         {
                             Console.WriteLine(player2.name + " wins this round.");
                             player2.score += 1;
-                            DisplayScore();
                         }
                         break;
                     case "paper":
@@ -116,13 +130,11 @@ namespace RPSLS
                         {
                             Console.WriteLine(player1.name + " wins this round.");
                             player1.score += 1;
-                            DisplayScore();
                         }
                         else
                         {
                             Console.WriteLine(player2.name + " wins this round.");
                             player2.score += 1;
-                            DisplayScore();
                         }
                         break;
                     case "scissors":
@@ -130,13 +142,11 @@ namespace RPSLS
                         {
                             Console.WriteLine(player1.name + " wins this round.");
                             player1.score += 1;
-                            DisplayScore();
                         }
                         else
                         {
                             Console.WriteLine(player2.name + " wins this round.");
                             player2.score += 1;
-                            DisplayScore();
                         }
                         break;
                     case "lizard":
@@ -144,13 +154,11 @@ namespace RPSLS
                         {
                             Console.WriteLine(player1.name + " wins this round.");
                             player1.score += 1;
-                            DisplayScore();
                         }
                         else
                         {
                             Console.WriteLine(player2.name + " wins this round.");
                             player2.score += 1;
-                            DisplayScore();
                         }
                         break;
                     case "spock":
@@ -158,13 +166,11 @@ namespace RPSLS
                         {
                             Console.WriteLine(player1.name + " wins this round.");
                             player1.score += 1;
-                            DisplayScore();
                         }
                         else
                         {
                             Console.WriteLine(player2.name + " wins this round.");
                             player2.score += 1;
-                            DisplayScore();
                         }
                         break;
                     default:
@@ -184,7 +190,7 @@ namespace RPSLS
         {
             // Create Player 1
             string playerName = GetPlayerName();
-            player1 = new HumanPlayer(playerName);
+            player1 = new Human(playerName);
 
             // Create Player 2
             player2 = DeterminePlayer();
@@ -194,6 +200,7 @@ namespace RPSLS
             while (player1.score < 2 && player2.score < 2)
             {
                 DoRound();
+                DisplayScore();
             }
 
             string winner = DetermineWinner();
