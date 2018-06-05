@@ -24,7 +24,7 @@ namespace RPSLS
             Random r = new Random();
             int index = r.Next(base.gestures.Count);
             string value = gestures[index];
-            Console.WriteLine(base.name + " chose " + value + ".");
+            Console.WriteLine("{0} chose {1}.", base.name, value);
             return value;
             
         }

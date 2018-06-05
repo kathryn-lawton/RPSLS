@@ -23,7 +23,7 @@ namespace RPSLS
             string input = string.Empty;
             do
             {
-                Console.WriteLine(base.name + ", please enter a gesture choice from the printed list:");
+                Console.WriteLine("{0}, please enter a gesture choice from the printed list:", base.name);
                 foreach (string gesture in base.gestures)
                 {
                     Console.WriteLine(gesture);

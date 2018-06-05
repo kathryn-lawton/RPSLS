@@ -91,7 +91,7 @@ namespace RPSLS
 
         public void DisplayWinner(string winner)
         {
-            Console.WriteLine(winner + " is the winner of this game!");
+            Console.WriteLine("{0} is the winner of this game!", winner);
             Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
             
@@ -115,61 +115,60 @@ namespace RPSLS
                     case "rock":
                         if (player2Gesture == "scissors" || player2Gesture == "lizard")
                         {
-                            Console.WriteLine(player1.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player1.name);
                             player1.score += 1;
-                            //.compareTo()
                         }
                         else
                         {
-                            Console.WriteLine(player2.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player2.name);
                             player2.score += 1;
                         }
                         break;
                     case "paper":
                         if (player2Gesture == "rock" || player2Gesture == "spock")
                         {
-                            Console.WriteLine(player1.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player1.name);
                             player1.score += 1;
                         }
                         else
                         {
-                            Console.WriteLine(player2.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player2.name);
                             player2.score += 1;
                         }
                         break;
                     case "scissors":
                         if(player2Gesture == "paper" || player2Gesture == "lizard")
                         {
-                            Console.WriteLine(player1.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player1.name);
                             player1.score += 1;
                         }
                         else
                         {
-                            Console.WriteLine(player2.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player2.name);
                             player2.score += 1;
                         }
                         break;
                     case "lizard":
                         if(player2Gesture == "paper" || player2Gesture == "spock")
                         {
-                            Console.WriteLine(player1.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player1.name);
                             player1.score += 1;
                         }
                         else
                         {
-                            Console.WriteLine(player2.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player2.name);
                             player2.score += 1;
                         }
                         break;
                     case "spock":
                         if(player2Gesture == "rock" || player2Gesture == "scissors")
                         {
-                            Console.WriteLine(player1.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player1.name);
                             player1.score += 1;
                         }
                         else
                         {
-                            Console.WriteLine(player2.name + " wins this round.");
+                            Console.WriteLine("{0} wins this round.", player2.name);
                             player2.score += 1;
                         }
                         break;
@@ -182,8 +181,8 @@ namespace RPSLS
 
         public void DisplayScore()
         {
-            Console.WriteLine(player1.name + "'s score is: " + player1.score);
-            Console.WriteLine(player2.name + "'s score is: " + player2.score);
+            Console.WriteLine("{0}'s score is: {1}", player1.name, player1.score);
+            Console.WriteLine("{0}'s score is: {1}", player2.name, player2.score);
         }
 
         public void RunGame()
@@ -205,22 +204,6 @@ namespace RPSLS
 
             string winner = DetermineWinner();
             DisplayWinner(winner);
-
-            
-
-
-
-            // if player 1 wins == 2 - declare winner
-            // else if player 2 wins == 2 -delare winner
-            // else -- error msg (should not happen)
-
-
-            //call MakeChoice
-            //determineRoundWinner
-            //display winner
-            //store winner in player
-
-
 
         }
     }
