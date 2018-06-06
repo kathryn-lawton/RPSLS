@@ -15,9 +15,9 @@ namespace RPSLS
 
         }
 
-        public override string MakeGestureChoice()
+        public override int MakeGestureChoice()
         {
-            string input = string.Empty;
+            int index = 0;
             do
             {
                 Console.WriteLine($"{base.name}, please enter a gesture choice from the printed list:");
@@ -25,26 +25,26 @@ namespace RPSLS
                 {
                     Console.WriteLine(gesture);
                 }
-
-                input = Console.ReadLine().ToLower();
+                string input = Console.ReadLine().ToLower();
+                index = IsValidGesture(input);
                 
-            } while (IsValidGesture(input) == false);
+            } while (index < 0);
 
-            return input;
+            return index;
         }
-
-        private bool IsValidGesture(string input)
+         
+        private int IsValidGesture(string input)
         {
             foreach(string gesture in base.gestures)
             {
                 if (gesture.CompareTo(input) == 0)
                 {
-                    return true;
+                    return base.gestures.IndexOf(gesture);
                 }
             }
 
             Console.WriteLine($"{input} is an invalid gesture.");
-            return false;
+            return -1;
         }
     }
 }

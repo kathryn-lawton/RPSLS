@@ -16,14 +16,14 @@ namespace RPSLS
 
         }
 
-        public override string MakeGestureChoice()
+        public override int MakeGestureChoice()
         {
             Random random = new Random();
             int index = random.Next(base.gestures.Count);
             string value = gestures[index];
             Console.WriteLine($"{base.name} chose {value}.");
 
-            return value;            
+            return index;            
         }
 
     }

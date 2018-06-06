@@ -8,7 +8,7 @@ namespace RPSLS
 {
     abstract class Player
     {
-        protected List<string> gestures = new List<string>() { "rock", "paper", "scissors", "lizard", "spock" };
+        protected List<string> gestures = new List<string>() { "rock", "paper", "scissors", "spock", "lizard" };
         public int score;
         public string name;
 
@@ -18,7 +18,7 @@ namespace RPSLS
             this.score = 0;
         }
 
-        public abstract string MakeGestureChoice();
+        public abstract int MakeGestureChoice();
    
     }
 }

@@ -79,81 +79,24 @@ namespace RPSLS
 
         public void DoRound()
         {
-            string player1Gesture = player1.MakeGestureChoice();
-            string player2Gesture = player2.MakeGestureChoice();
-
-            if(player1Gesture.CompareTo(player2Gesture) == 0)
+            int result = (5 + player1.MakeGestureChoice() - player2.MakeGestureChoice()) % 5;
+           
+            if(result == 1 || result == 3)
             {
-                Console.WriteLine("This round is a tie, both players chose the same gesture.");  
+                Console.WriteLine($"{player1.name} wins this round.");
+                player1.score += 1;
             }
-            else
+            else if(result == 2 || result == 4)
             {
-                switch (player1Gesture)
-                {
-                    case "rock":
-                        if (player2Gesture == "scissors" || player2Gesture == "lizard")
-                        {
-                            Console.WriteLine($"{player1.name} wins this round.");
-                            player1.score += 1;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{player2.name} wins this round.");
-                            player2.score += 1;
-                        }
-                        break;
-                    case "paper":
-                        if (player2Gesture == "rock" || player2Gesture == "spock")
-                        {
-                            Console.WriteLine($"{player1.name} wins this round.");
-                            player1.score += 1;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{player2.name} wins this round.");
-                            player2.score += 1;
-                        }
-                        break;
-                    case "scissors":
-                        if(player2Gesture == "paper" || player2Gesture == "lizard")
-                        {
-                            Console.WriteLine($"{player1.name} wins this round.");
-                            player1.score += 1;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{player2.name} wins this round.");
-                            player2.score += 1;
-                        }
-                        break;
-                    case "lizard":
-                        if(player2Gesture == "paper" || player2Gesture == "spock")
-                        {
-                            Console.WriteLine($"{player1.name} wins this round.");
-                            player1.score += 1;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{player2.name} wins this round.");
-                            player2.score += 1;
-                        }
-                        break;
-                    case "spock":
-                        if(player2Gesture == "rock" || player2Gesture == "scissors")
-                        {
-                            Console.WriteLine($"{player1.name} wins this round.");
-                            player1.score += 1;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{player2.name} wins this round.");
-                            player2.score += 1;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            } 
+                Console.WriteLine($"{player2.name} wins this round.");
+                player2.score += 1;
+            }
+            else if(result == 0)
+            {
+                Console.WriteLine("This round is a tie, both players chose the same gesture.");
+            }
+
+            
         }
 
         public void DisplayScore()
